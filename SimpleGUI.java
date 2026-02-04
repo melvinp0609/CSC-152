@@ -29,12 +29,12 @@ public class SimpleGUI {
 
         // Create a text field
         JTextField userText = new JTextField(20);
-        userText.setBounds(10, 80, 80, 25);
-        panel.add(loginButton);
+        userText.setBounds(100, 20, 165, 25);
+        panel.add(userText);
 
         // Create a button
         JButton loginButton = new JButton("Login");
-        loginButton.setBounds(10,80,165,25);
+        loginButton.setBounds(10,80,80,25);
         panel.add(loginButton);
 
         // Add action listener to button

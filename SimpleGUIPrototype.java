@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 // public class SimpleGUI: 
 // Defines the main class; entry point of program
 
-public class SimpleGUI {
+public class SimpleGUIPrototype {
 
     // public static void main(String[] args):
     // main method is the starting point of the application.

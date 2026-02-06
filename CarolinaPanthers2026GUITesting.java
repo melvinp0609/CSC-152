@@ -2,97 +2,138 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
-public class CarolinaPanthers2026GUITesting {
+public class CarolinaPanthers2026GUITesting extends JFrame {
+    private JPanel mainPanel, buttonPanel, itemPanel;
+    private JButton button1, button2;
+    private JList<String> itemList;
+    private DefaultListModel<String> listModel;
 
-    // Shows the first panel which allows the user to choose between players and coaches/staff.
-    private static JFrame frame;
-    private static JPanel currentPanel;
-    private static JLabel selectedThingLabel;
-    private static JComboBox<String> thingComboBox;
+    public CarolinaPanthers2026GUITesting() {
+        setTitle("NFL Carolina Panthers 2026 Season Info");
+        setSize(400, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
 
-    public static void main(String[] arg) {
-        // Frame creation
-        frame = new JFrame("NFL Carolina Panthers 2026 Season Info");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 300);
+        mainPanel = new JPanel(new CardLayout());
+        buttonPanel = new JPanel();
+        itemPanel = new JPanel();
 
-        // Start with the first panel
-        currentPanel = createPanel1();
-        frame.add(currentPanel);
+        button1 = new JButton("Players");
+        button2 = new JButton("Coaches/Staff");
 
-        // Create buttons to switch panels
-        JButton button1 = new JButton("Players");
-        JButton button2 = new JButton("Coaches/Staff");
-
-        // Add ActionListeners to the buttons
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Add code
-            }
-        });
-        
-        button2.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-                coachesstaffList(currentPanel);
-           } 
-        });
-        
-        // Create a panel for buttons and add them
-        JPanel buttonPanel = new JPanel();
         buttonPanel.add(button1);
         buttonPanel.add(button2);
 
-        frame.add(buttonPanel, BorderLayout.NORTH);
-        frame.setVisible(true);
+        listModel = new DefaultListModel<>();
+        itemList = new JList<>(listModel);
+        itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        itemList.setVisibleRowCount(10);
+
+        itemList.addListSelectionListener(new ItemSelectionListener());
+
+        JScrollPane scrollPane = new JScrollPane(itemList);
+
+        itemPanel.add(scrollPane);
+        JButton backButton = new JButton("Back to Main");
+        itemPanel.add(backButton);
+
+        mainPanel.add(buttonPanel, "Buttons");
+        mainPanel.add(itemPanel, "Items");
+
+        add(mainPanel, BorderLayout.CENTER);
+
+        button1.addActionListener(new ButtonClickListener("Items 1"));
+        button2.addActionListener(new ButtonClickListener("Items 2"));
+        backButton.addActionListener(e -> showButtons());
     }
 
-    private static void switchPanel(JPanel newPanel) {
-        frame.remove(currentPanel);
-        currentPanel = newPanel;
-        frame.add(currentPanel);
-        frame.revalidate();
-        frame.repaint();
-    }
+    private class ButtonClickListener implements ActionListener {
+        private String itemCategory;
 
-    private static JPanel createPanel1() {
-        JPanel panel = new JPanel();
-        panel.add(new JLabel("Carolina Panthers Players"));
-        return panel;
-    }
+        public ButtonClickListener(String itemCategory) {
+            this.itemCategory = itemCategory;
+        }
 
-    private static JPanel createPanel2() {
-        JPanel panel = new JPanel();
-        panel.add(new JLabel("Carolina Panthers Coaches/Staff"));
-        return panel;
-    }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            updateItemList();
+            showItems();
+        }
 
-    private static void playersList(JPanel panel) {
-        String[] players = {
-            // Active
-            "Thing 1",
-            "Thing 2",
-            "Thing 3"
-        };
-
-        String selectedThing = (String) JOptionPane.showInputDialog(
-            panel,
-            "Select a thing: ",
-            "Things",
-            JOptionPane.PLAIN_MESSAGE,
-            null,
-            players,
-            players[0]
-        );
-
-        if (selectedThing != null) {
-            System.out.println("Selected thing: " + selectedThing);
+        private void updateItemList() {
+            listModel.clear();
+            String[] items;
+            if (itemCategory.equals("Item 1")) {
+                items = new String[]{"Item 1A", "Item 1B", "Item 1C"};
+            }
+            else {
+                items = new String[]{"Item 2A", "Item 2B", "Item 2C"};
+            }
+            for (String item : items) {
+                listModel.addElement(item);
+            }
+            itemList.setModel(listModel);
         }
     }
 
-    private static void coachesstaffList(JPanel panel) {
+    private class ItemSelectionListener implements ListSelectionListener {
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            if (!e.getValueIsAdjusting()) {
+                String selectedItem = itemList.getSelectedValue();
+                if (selectedItem != null) {
+                    showItemDetail(selectedItem);
+                }
+            }
+        }
+    }
 
+    private void showItemDetail(String selectedItem) {
+        String message;
+
+        switch (selectedItem) {
+            case "Item 1A":
+                message = "Details about Item 1A";
+                break;
+            case "Item 1B": 
+                message = "Details about Item 1B";
+                break;
+            case "Item 1C":
+                message = "Details about Item 1C";
+                break;
+            case "Item 2A":
+                message = "Details about Item 2A";
+                break;
+            case "Item 2B": 
+                message = "Details about Item 2B";
+                break;
+            case "Item 2C":
+                message = "Details about Item 2C";
+                break;
+            default:
+                message = "No details available for " + selectedItem;
+        }
+
+        JOptionPane.showMessageDialog(this, message, "Item Details", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void showItems() {
+        CardLayout cl = (CardLayout) (mainPanel.getLayout());
+        cl.show(mainPanel, "Items");
+    }
+
+    private void showButtons() {
+        CardLayout cl = (CardLayout) (mainPanel.getLayout());
+        cl.show(mainPanel, "Buttons");
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            CarolinaPanthers2026GUITesting viewer = new CarolinaPanthers2026GUITesting();
+            viewer.setVisible(true);
+        });
     }
 }

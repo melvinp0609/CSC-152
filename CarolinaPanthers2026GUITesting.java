@@ -3,11 +3,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CarolinaPanthers2026 {
+public class CarolinaPanthers2026GUITesting {
 
     // Shows the first panel which allows the user to choose between players and coaches/staff.
     private static JFrame frame;
     private static JPanel currentPanel;
+    private static JLabel selectedThingLabel;
+    private static JComboBox<String> thingComboBox;
 
     public static void main(String[] arg) {
         // Frame creation
@@ -27,14 +29,14 @@ public class CarolinaPanthers2026 {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                switchPanel(createPanel1());
+                // Add code
             }
         });
         
         button2.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
-                switchPanel(createPanel2());
+                coachesstaffList(currentPanel);
            } 
         });
         
@@ -53,5 +55,44 @@ public class CarolinaPanthers2026 {
         frame.add(currentPanel);
         frame.revalidate();
         frame.repaint();
+    }
+
+    private static JPanel createPanel1() {
+        JPanel panel = new JPanel();
+        panel.add(new JLabel("Carolina Panthers Players"));
+        return panel;
+    }
+
+    private static JPanel createPanel2() {
+        JPanel panel = new JPanel();
+        panel.add(new JLabel("Carolina Panthers Coaches/Staff"));
+        return panel;
+    }
+
+    private static void playersList(JPanel panel) {
+        String[] players = {
+            // Active
+            "Thing 1",
+            "Thing 2",
+            "Thing 3"
+        };
+
+        String selectedThing = (String) JOptionPane.showInputDialog(
+            panel,
+            "Select a thing: ",
+            "Things",
+            JOptionPane.PLAIN_MESSAGE,
+            null,
+            players,
+            players[0]
+        );
+
+        if (selectedThing != null) {
+            System.out.println("Selected thing: " + selectedThing);
+        }
+    }
+
+    private static void coachesstaffList(JPanel panel) {
+
     }
 }

@@ -10,20 +10,54 @@ public class CarolinaPanthers2026 {
 
         JPanel panel = new JPanel();
         frame.add(panel);
-        setupComponents(panel);
+        pantherPlayers(panel);
+        pantherCoaches(panel);
+        
+        // Wilsonb2742's code ------------------------------------------------------------------------------
+        boolean running = true;
+        while (running) {
+            String[] mainOptions = {"Players", "Coaches/Staff", "Exit"};
+            String mainChoice = (String) JOptionPane.showInputDialog(
+                panel,
+                "Select a category:",
+                "Carolina Panthers 2026",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                mainOptions,
+                mainOptions[0]
+            );
+
+            if (mainChoice == null || mainChoice.equals("Exit")) {
+                running = false;
+                break;
+                // TODO: Stop another panel from popping up after clicking exit or the (x) button.
+            }
+
+            switch (mainChoice) {
+                case "Players":
+                    showPlayers(panel);
+                    break;
+                case "Coaches/Staff":
+                    showCoaches(panel);
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(panel, "Invalid choice.");
+            }
+        }
+        // ------------------------------------------------------------------------------------------------
 
         frame.setVisible(true);
     }
 
-    private static void setupComponents(JPanel panel) {
-        JButton showItemsButton = new JButton("Show Items");
-        panel.add(showItemsButton);
+    private static void pantherPlayers(JPanel panel) {
+        JButton pantherPlayersButton = new JButton("Players");
+        panel.add(pantherPlayersButton);
 
-        showItemsButton.addActionListener(new ActionListener() {
+        pantherPlayersButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String[] items = { "Item 1", "Item 2", "Item 3", "Item 4" };
-                String message = "Select an item:";
+                String[] items = { "Player 1", "Player 2", "Player 3", "Player 4" };
+                String message = "Click on a player:";
 
                 String selectedItem = (String) JOptionPane.showInputDialog(
                     panel,
@@ -56,5 +90,10 @@ public class CarolinaPanthers2026 {
             default:
                 return "No information available.";
         }
+    }
+
+    private static void pantherCoaches(JPanel panel) {
+        JButton pantherCoachesButton = new JButton("Coaches");
+        panel.add(pantherCoachesButton);
     }
 }

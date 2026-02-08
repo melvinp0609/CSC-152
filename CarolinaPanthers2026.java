@@ -127,7 +127,7 @@ public class CarolinaPanthers2026 extends JFrame {
     // Constructor to set up the GUI.
     public CarolinaPanthers2026() {
         setTitle("NFL Carolina Panthers 2026 Season Info");
-        setSize(400, 300);
+        setSize(500, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 

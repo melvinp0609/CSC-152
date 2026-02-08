@@ -1,4 +1,4 @@
-// Members who contributed to the code:
+// Members who contributed to the final project:
 // A. Young (Aly3673) - Created the GUI 
 // B. Wilson (wilsonb2742) - Provided all players and coaches/staff along with info on the whole team
 
@@ -8,11 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.Color; 
+import java.awt.Color;
 
 public class CarolinaPanthers2026 extends JFrame {
     
-    // GUI componenets. (Aly3673's work)
+    // GUI componenets.
     private JPanel mainPanel, buttonPanel, itemPanel;
     private JButton button1, button2;
     private JList<String> itemList;

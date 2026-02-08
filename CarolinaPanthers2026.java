@@ -136,14 +136,17 @@ public class CarolinaPanthers2026 extends JFrame {
         buttonPanel = new JPanel();
         itemPanel = new JPanel();
 
-        buttonPanel.setBackground(Color.LIGHT_GRAY);
-        itemPanel.setBackground(Color.LIGHT_GRAY);
+        buttonPanel.setBackground(Color.WHITE);
+        itemPanel.setBackground(Color.WHITE);
         mainPanel.setBackground(Color.BLACK);
 
         button1 = new JButton("Players");
         button2 = new JButton("Coaches/Staff");
 
+        button1.setBackground(Color.WHITE);
         button1.setForeground(Color.BLUE);
+
+        button2.setBackground(Color.WHITE);
         button2.setForeground(Color.BLUE);
 
         buttonPanel.add(button1);
@@ -167,7 +170,8 @@ public class CarolinaPanthers2026 extends JFrame {
         itemPanel.add(scrollPane, BorderLayout.CENTER);
 
         JButton backButton = new JButton("Go Back");
-        backButton.setForeground(Color.BLACK);
+        backButton.setBackground(Color.WHITE);
+        backButton.setForeground(Color.BLUE);
         itemPanel.add(backButton, BorderLayout.SOUTH);
 
         mainPanel.add(buttonPanel, "Buttons");

@@ -12,11 +12,11 @@ public class CarolinaPanthers2026GUITesting extends JFrame {
     private DefaultListModel<String> listModel;
 
     private String[] players = {
-        "Maxwell Harper", "Landon Rivers", "Troy Jefferson"
+        // Place players here.
     };
 
     private String[] coaches = {
-        "Frank Reich", "Josh McCown", "Dan Morgan"
+        // Place coaches/staff here.
     };
 
     public CarolinaPanthers2026GUITesting() {

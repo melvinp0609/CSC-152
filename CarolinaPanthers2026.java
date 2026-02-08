@@ -1,6 +1,6 @@
 // Members who contributed to the code:
-// A. Young (Aly3673)
-// B. Wilson (wilsonb2742)
+// A. Young (Aly3673) - Created the GUI 
+// B. Wilson (wilsonb2742) - Provided all players and coaches/staff along with info on the whole team
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,13 +10,15 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 public class CarolinaPanthers2026 extends JFrame {
+    
+    // GUI componenets.
     private JPanel mainPanel, buttonPanel, itemPanel;
     private JButton button1, button2;
     private JList<String> itemList;
     private DefaultListModel<String> listModel;
 
+    // All Carolina Panthers players.
     private String[] players = {
-        // Active
         "Krys Barnes - ILB",
         "Bobby Brown III - DT",
         "Derick Brown - DT",
@@ -69,9 +71,7 @@ public class CarolinaPanthers2026 extends JFrame {
         "Tershawn Wharton - DT",
         "D.J. Wonnum - OLB",
         "Bryce Young - QB",
-        // Active/PUP
         "Jonathon Brooks - RB",
-        // Reserve/Future
         "Jared Bartlett - LB",
         "Ja'Tyre Carter - G",
         "Saahdiq Charles - G",
@@ -88,7 +88,6 @@ public class CarolinaPanthers2026 extends JFrame {
         "Ainias Smith - WR",
         "Anthony Tyus III - RB",
         "Jacoby Windmon - LB",
-        // Reserve/Injured
         "Popo Aumavae - DT",
         "Brady Christensen - OL",
         "Patrick Jones II - OLB",
@@ -99,6 +98,7 @@ public class CarolinaPanthers2026 extends JFrame {
         "Chandler Zavala - G"
     };
 
+    // All Carolina Panthers coaches/staff.
     private String[] coachesStaff = {
         "Dave Canales - Head Coach",
         "Brad Idzik - Offensive Coordinator",
@@ -124,6 +124,7 @@ public class CarolinaPanthers2026 extends JFrame {
         "Dean Petzing - Offensive Quality Control"
     };
 
+    // Constructor to set up the GUI.
     public CarolinaPanthers2026() {
         setTitle("NFL Carolina Panthers 2026 Season Info");
         setSize(400, 300);
@@ -149,7 +150,9 @@ public class CarolinaPanthers2026 extends JFrame {
 
         JScrollPane scrollPane = new JScrollPane(itemList);
         itemPanel.setLayout(new BorderLayout());
+        itemPanel.add(scrollPane, BorderLayout.WEST);
         itemPanel.add(scrollPane, BorderLayout.CENTER);
+
         JButton backButton = new JButton("Go Back");
         itemPanel.add(backButton, BorderLayout.SOUTH);
 
@@ -163,6 +166,7 @@ public class CarolinaPanthers2026 extends JFrame {
         backButton.addActionListener(e -> showButtons());
     }
 
+    // Listener for button clicks to switch between Players and Coaches/Staff.
     private class ButtonClickListener implements ActionListener {
         private String itemCategory;
 
@@ -193,6 +197,7 @@ public class CarolinaPanthers2026 extends JFrame {
         }
     }
 
+    // Listener for item selections in the list.
     private class ItemSelectionListener implements ListSelectionListener {
         @Override
         public void valueChanged(ListSelectionEvent e) {
@@ -205,9 +210,10 @@ public class CarolinaPanthers2026 extends JFrame {
         }
     }
 
+    // Display detailed information about the selected player or coach/staff.
     private void showItemDetail(String selectedItem) {
         String message = "Details about " + selectedItem;
-        String title = playersListContains(selectedItem) ? "Players Details" : "Coaches/Staff Details";
+        String title = playersListContains(selectedItem) ? "Player Details" : "Coaches/Staff Details";
 
         if (playersListContains(selectedItem)) {
             message = getPlayerInfo(selectedItem);
@@ -218,6 +224,7 @@ public class CarolinaPanthers2026 extends JFrame {
         JOptionPane.showMessageDialog(this, message, title, JOptionPane.INFORMATION_MESSAGE);
     }
 
+    // Check if the selected is a player or not.
     private boolean playersListContains(String selectedItem) {
         for (String player : players) {
             if (player.equals(selectedItem)) {
@@ -227,16 +234,19 @@ public class CarolinaPanthers2026 extends JFrame {
         return false;
     }
 
+    // Switch to show the list.
     private void showItems() {
         CardLayout cl = (CardLayout) (mainPanel.getLayout());
         cl.show(mainPanel, "Items");
     }
 
+    // Switch to show buttons.
     private void showButtons() {
         CardLayout cl = (CardLayout) (mainPanel.getLayout());
         cl.show(mainPanel, "Buttons");
     }
 
+    // Player info.
     private String getPlayerInfo(String player) {
         switch (player) {
             case "Krys Barnes - ILB": return "Krys Barnes, #40, ILB, 6-2, 229 lbs, 27 y/o, 6 yrs exp, UCLA";
@@ -324,6 +334,7 @@ public class CarolinaPanthers2026 extends JFrame {
         }
     }
 
+    // Coaches & staff info.
     private String getStaffInfo(String staff) {
         switch (staff) {
             case "Dave Canales - Head Coach":
@@ -441,6 +452,7 @@ public class CarolinaPanthers2026 extends JFrame {
         }
     }
 
+    // Main method to launch the application.
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             CarolinaPanthers2026 viewer = new CarolinaPanthers2026();

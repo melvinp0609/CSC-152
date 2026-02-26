@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+// A. Young (Aly3673) - Made the GUI
 public class GroupProject_02Prototype {
     public static void main(String[] args) {
         // Creating file chooser

@@ -1,3 +1,6 @@
+package src.main.java.GroupProject_02;
+
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -5,9 +8,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class GroupProject_02Prototype {
+public class GroupProject_02 {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Open File Example");
@@ -30,8 +33,9 @@ public class GroupProject_02Prototype {
 
         int returnVal = fileChooser.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.setSelectedFile();
+            File selectedFile = fileChooser.getSelectedFile();
             String filePath = selectedFile.getAbsolutePath();
+            
             if (filePath.endsWith(".csv")) {
                 readCsvFile(selectedFile);
             } else if (filePath.endsWith(".xls") || filePath.endsWith(".xlsx")) {

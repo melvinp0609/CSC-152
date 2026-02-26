@@ -1,3 +1,4 @@
+package src;
 // My contribution to the project.
 
 import javax.swing.*;
